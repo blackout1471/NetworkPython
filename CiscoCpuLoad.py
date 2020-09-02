@@ -16,11 +16,25 @@ class CiscoCpuLoad:
         data = fh.get_numbers_from_string(data)
         return data[-1]
         
+    def get_current_cpu_load(self):
+        data = self.__get_cpu_table_load()
+        data = fh.get_line_from_string(0, data)
+        data = fh.get_numbers_from_string(data)
+        return data[0];
+        
     def write_to_cpu_file(self, data):
-        self.file_handler.append_to_file(data)
+        self.file_handler.append_to_file(fh.format_cpu_data_tostring(data))
         
     def read_from_cpu_file(self):
-        return self.file_handler.read_from_file()
+        dataList = []
+        data = self.file_handler.read_from_file()
+        data = fh.get_lines_from_string(data)
+        
+        for line in data:
+            if line != "":
+                dataList.append(fh.format_cpu_data_toobject(line))
+        
+        return dataList
     
     def __get_cpu_table_load(self):
         return self.connect_handler.send_command("show process cpu")

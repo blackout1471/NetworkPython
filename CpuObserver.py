@@ -15,8 +15,10 @@ class CpuObserver(threading.Thread):
             self.cpu_loader.write_to_cpu_file(self.cpu_loader.get_five_minutes_cpu_load())
         
 if (__name__ == "__main__"):
-    observer = CpuObserver(5, CiscoCpuLoad("172.16.4.2", "admin", "admin123"))
+    obj = CiscoCpuLoad("172.16.4.2", "admin", "admin123")
+    observer = CpuObserver(5, obj)
     observer.start()
     
     while True:
-        time.sleep(2000)
+        #print(obj.read_from_cpu_file())
+        time.sleep(10)
