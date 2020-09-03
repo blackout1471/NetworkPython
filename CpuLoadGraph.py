@@ -1,55 +1,30 @@
-import numpy
-from matplotlib import pyplot
+from GraphMaker import GraphMaker
 from CiscoCpuLoad import CiscoCpuLoad
 import time
 
-class CpuLoadGraph:
-    def __init__(self, ciscoCpuLoad):
-        self.cpuLoader = ciscoCpuLoad
-        pyplot.title("Cpu Load Graph")
-        pyplot.xlabel("Time : HH/MM/SS")
-        pyplot.ylabel("Cpu Load %")
-        pyplot.ion()
+class CpuLoadGraph(GraphMaker):
+    def __init__(self, ciscoCpuLoader):
+        self.data_loader = ciscoCpuLoader
+        GraphMaker.__init__(self, "Cpu Load Graph", "Time", "Cpu %", 5000)
+    
+    def get_data(self):
+        data = self.data_loader.read_from_cpu_file()
+        xdata = []
+        ydata = []
         
-        data = self.__get_cpu_data()
-        
-        fig = pyplot.figure()
-        ax = fig.add_subplot(111)
-        line1, = ax.plot(data[1], data[0])
-        
-        while True:
+        i = 0
+        for item in data:
+            ydata.append(item["load"])
+            xdata.append(i)
+            i+=1
             
-        
-        pyplot.figure()
-        
-    def plot_data(self):
-        data = self.cpuLoader.read_from_cpu_file()
-        load_arr = []
-        time_arr = []
-        
-        for item in data:
-            load = int(item["load"])
-            time = int(item["hours"])*10000 + int(item["minutes"])*100 + int(item["seconds"])
-            load_arr.append(load)
-            time_arr.append(time)
-        pyplot.plot(time_arr, load_arr)
-        
-    def __get_cpu_data(self):
-        data = self.cpuLoader.read_from_cpu_file()
-        load_arr = []
-        time_arr = []
-        
-        for item in data:
-            load = int(item["load"])
-            time = int(item["hours"])*10000 + int(item["minutes"])*100 + int(item["seconds"])
-            load_arr.append(load)
-            time_arr.append(time)
-         
-        return [load_arr, time_arr]
+        return [xdata, ydata]
 
 if __name__ == "__main__":
     obj = CiscoCpuLoad("172.16.4.2", "admin", "admin123")
+    from CpuObserver import CpuObserver
+    observer = CpuObserver(5, obj)
+    observer.start()
+    
     graph = CpuLoadGraph(obj)
-    import time
-    time.sleep(10)
-    print("done")
+    graph.Run()
