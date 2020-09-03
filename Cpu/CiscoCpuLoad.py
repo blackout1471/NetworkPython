@@ -25,7 +25,7 @@ class CiscoCpuLoad:
         data = fh.get_line_from_string(0, data)
         data = fh.get_numbers_from_string(data)
         if (data[0] == None):
-            data = [None]
+            data = [0]
         
         return data[0];
         

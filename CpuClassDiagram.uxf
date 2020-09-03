@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>70</x>
+      <y>530</y>
+      <w>400</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>CpuObserver
+--
+- sleep_time : int
+- cpu_loader : CiscoCpuLoad
+--
++ CpuObserver(seconds:int, ciscoCpuLoader : CiscoCpuLoad)
++ Run() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>280</x>
+      <y>220</y>
+      <w>400</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>CiscoCpuLoad
+--
+- connect_handler : netmiko.ConnectHandler
+- filePath : string
+- file_handler : FileHandler
+--
++ CiscoCpuLoad(ip:string, username:string, password:string)
++ get_five_minutes_cpu_load() : string
++ get_current_cpu_load() : string
++ write_to_cpu_file(data:string) : void
++ read_from_cpu_file() : Dictionary&lt;string, string, string&gt;
+- __get_cpu_table_load() : string
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>700</x>
+      <y>520</y>
+      <w>350</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>CpuLoadGraph
+--
+- data_loader : CiscoCpuLoad
+--
++ CpuLoadGraph(ciscoCpuLoader:CiscoCpuLoad)
++ get_data() : int[][]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>820</x>
+      <y>10</y>
+      <w>320</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>FileHandler
+--
+- filePath : string
+- file : file
+--
++ FileHandler(filePath:string) : void
++ write_to_file(data:string) : void
++ append_to_file(data:string) : void
++ read_from_file() : string
+- __open_file_write() : void
+- __open_file_append() : void
+- __open_file_read() : void
+- __close_file() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>170</x>
+      <y>0</y>
+      <w>220</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>modules
+--
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>130</y>
+      <w>220</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>threading.Thread
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>150</y>
+      <w>30</w>
+      <h>400</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;380.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>100</y>
+      <w>220</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Netmiko
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>70</y>
+      <w>220</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Paramiko
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>40</y>
+      <w>220</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Pyplot
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>380</x>
+      <y>100</y>
+      <w>90</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>70.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>570</x>
+      <y>120</y>
+      <w>270</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;100.0;250.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>390</y>
+      <w>120</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;140.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>580</x>
+      <y>390</y>
+      <w>190</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>170.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>770</x>
+      <y>240</y>
+      <w>430</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>GraphMaker
+--
+- title:string
+- xlabel:string
+- ylabel:string
+- updaterate:int
+--
++ GraphMaker(title:string, xlabel:string, ylabel:string, updaterate:int)
++ animate(i:frame) : void
++ get_data() : int[][]
++ Run() : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>380</x>
+      <y>40</y>
+      <w>410</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;390.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>420</y>
+      <w>30</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+</diagram>
