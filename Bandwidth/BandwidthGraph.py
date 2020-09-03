@@ -1,4 +1,6 @@
 from GetRouterTraffic import RouterInfo
+import sys
+sys.path.append("..")
 from GraphMaker import GraphMaker
 
 class BwLoadGraph(GraphMaker):

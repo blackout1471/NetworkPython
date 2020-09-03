@@ -1,6 +1,5 @@
 from matplotlib import pyplot
 import matplotlib.animation as animation
-from CiscoCpuLoad import CiscoCpuLoad
 
 class GraphMaker:
     def __init__(self, title, xlabel, ylabel, updateRate):

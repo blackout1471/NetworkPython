@@ -1,5 +1,7 @@
 import paramiko
 import netmiko
+import sys
+sys.path.append("..")
 import Formathandler as fh
 
 class InterfaceInfo:
