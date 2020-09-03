@@ -1,7 +1,11 @@
+import sys
+import os
 from netmiko import ConnectHandler
+
+sys.path.append("..")
 from Filehandler import FileHandler
 import Formathandler as fh
-import os
+
 
 class CiscoCpuLoad:
     def __init__(self, ip, username, password):

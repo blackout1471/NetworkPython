@@ -1,6 +1,10 @@
-from GraphMaker import GraphMaker
-from CiscoCpuLoad import CiscoCpuLoad
+import sys
 import time
+from CiscoCpuLoad import CiscoCpuLoad
+
+sys.path.append("..")
+from GraphMaker import GraphMaker
+
 
 class CpuLoadGraph(GraphMaker):
     def __init__(self, ciscoCpuLoader):

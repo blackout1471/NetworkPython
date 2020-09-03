@@ -20,5 +20,5 @@ if (__name__ == "__main__"):
     observer.start()
     
     while True:
-        #print(obj.read_from_cpu_file())
+        print(obj.read_from_cpu_file())
         time.sleep(10)
