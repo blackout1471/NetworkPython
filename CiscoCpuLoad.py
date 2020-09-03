@@ -20,6 +20,9 @@ class CiscoCpuLoad:
         data = self.__get_cpu_table_load()
         data = fh.get_line_from_string(0, data)
         data = fh.get_numbers_from_string(data)
+        if (data[0] == None):
+            data = [None]
+        
         return data[0];
         
     def write_to_cpu_file(self, data):

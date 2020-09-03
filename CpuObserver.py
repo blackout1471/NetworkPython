@@ -12,7 +12,7 @@ class CpuObserver(threading.Thread):
     def run(self):
         while True:
             time.sleep(self.sleep_time)
-            self.cpu_loader.write_to_cpu_file(self.cpu_loader.get_five_minutes_cpu_load())
+            self.cpu_loader.write_to_cpu_file(self.cpu_loader.get_current_cpu_load())
         
 if (__name__ == "__main__"):
     obj = CiscoCpuLoad("172.16.4.2", "admin", "admin123")

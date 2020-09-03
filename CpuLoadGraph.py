@@ -14,7 +14,7 @@ class CpuLoadGraph(GraphMaker):
         
         i = 0
         for item in data:
-            ydata.append(item["load"])
+            ydata.append(int(item["load"]))
             xdata.append(i)
             i+=1
             
